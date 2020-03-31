@@ -1,3 +1,25 @@
+
+
+# Patient SaaS Project
+
+If you would like to contribute to this project, join us at https://www.endcoronavirus.org and join the #response-patient_sass channel in the Slack, where you can connect to the Trello board and project activities.
+
+
+#  Project Mission
+Our project aims to support COVID19 potential patients in great need of medical help, via self-service to make requests to healthcare providers, and to receive the most suitable guidance and action derived from their circumstances in an automated way. 
+  
+As part of a larger initiative from NECSI with the explicit goal of stopping the spread of nCov-2019 / COVID19, it will rely on collaboration among a group of people who volunteer to help from various disciplines to make this happen.
+
+## Rough development outline:
+
+* Front end for collecting patient data (location, symptoms, etc)
+* Backend for calculating guidance (API)
+* Interface for Healthcare providers to review and confirm actions
+
+This is expected to be a hosted solution, however ideally will be built in a way which would allow anybody to use the software as they see fit, such as installing it themselves and running it.
+
+
+
 # Flask App with MySQL Database
 
 ## Quick Start
