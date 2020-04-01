@@ -4,7 +4,7 @@ services:
   www:
     build: www/.
     ports:
-      - "80:80"
+      - "8001:80"
     links:
       - db
     depends_on:
@@ -12,7 +12,10 @@ services:
 
   db:
     build: db/.
+    ports:
+      - "3306:3306"
     volumes:
       - /var/lib/mysql
     environment:
        MYSQL_ROOT_PASSWORD: supersecure
+       MYSQL_DATABASE: patient_sass
