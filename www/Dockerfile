@@ -10,4 +10,4 @@ WORKDIR /opt/www
 RUN pip install -r requirements.txt
 
 EXPOSE 80
-CMD python index.py
+CMD ./wait-for-it.sh -t 60 db:3306 && python index.py

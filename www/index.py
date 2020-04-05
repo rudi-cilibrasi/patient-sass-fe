@@ -1,5 +1,6 @@
 # Infrastructure test page.
 import os
+import random
 from flask import Flask
 from flask import Markup
 from flask import render_template
@@ -9,11 +10,36 @@ from sqlalchemy.sql import text
 app = Flask(__name__)
 
 # Configure MySQL connection.
-db = SQLAlchemy()
-db_uri = 'mysql://root:supersecure@db/information_schema'
+
+db_uri = 'mysql://root:supersecure@db/patient_sass'
 app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db.init_app(app)
+
+db = SQLAlchemy(app)
+
+class Patient(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), unique=False, nullable=False)
+
+    def __repr__(self):
+        return 'Patient: %r' % self.name
+
+db.create_all()
+
+
+@app.route("/test_db")
+def test_db():
+    n = random.randint(0, 10000)
+    str = f'abc{n}'
+    p = Patient(name=str)
+    db.session.add(p)
+    db.session.commit()
+    for p in Patient.query.all():
+        str += p.__repr__() + "<br />"
+    result = Markup(f'<span style="color: green;">Init DB<br />{str}</span>')
+    return render_template('index.html', result=result)
+
+
 
 @app.route("/")
 def test():
